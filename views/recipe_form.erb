@@ -1,0 +1,13 @@
+<form action="/recipes" method="post" id="recipeform">
+  <div class='form-group'>
+    <label for="name">Enter your recipe name:</label>
+    <input type="text" name="name" class='form-control' placeholder='Enter Recipe Name' required='true'>
+    <label for="ingredients">Enter the ingredients:</label>
+    <textarea class='form-control' name="ingredients" form="recipeform" placeholder='Enter ingredients' required='true'></textarea>
+    <label for="instructions">Enter the instructions:</label>
+    <textarea class='form-control' name="instructions" form="recipeform" placeholder='Enter instructions' required='true'></textarea>
+  </div>
+  <button type='submit'>Submit</button>
+</form>
+
+<a href="/">Home</a>
