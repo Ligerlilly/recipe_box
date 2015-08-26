@@ -55,4 +55,17 @@ describe 'tag path', { type: :feature } do
     click_link "delete"
     expect(page).not_to have_content "drink"
   end
+
+  it 'will update a tag' do
+    @recipe = Recipe.create({name: "mojito", instructions: "muddle", ingredients: "mint, gin and sugar"})
+    @tag = Tag.create({name: "drink"})
+    @recipe.tags.push(@tag)
+    visit "/recipes/#{@recipe.id}"
+    click_link "#{@tag.name}"
+    select 'Cocktail', from: 'tag_name'
+    click_button 'Submit'
+    expect(page).to have_content "Cocktail"
+    expect(page).not_to have_content "drink"
+  end
+
 end

@@ -64,3 +64,16 @@ get '/recipes/:id/tags/:tag_id/delete' do
 	@tag.destroy
 	redirect "/recipes/#{@recipe.id}"
 end
+
+get '/recipes/:id/tags/:tag_id/edit' do
+	@recipe = Recipe.find(params['id'].to_i)
+	@tag = Tag.find(params['tag_id'].to_i)
+  erb :tag_edit
+end
+
+patch '/recipes/:id/tags/:tag_id' do
+	@recipe = Recipe.find(params['id'].to_i)
+	@tag = Tag.find(params['tag_id'].to_i)
+	@tag.update({ name: params['tag_name'] })
+	redirect "/recipes/#{@recipe.id}"
+end

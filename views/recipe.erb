@@ -11,7 +11,7 @@
 
 <ul class="list-inline">
   Tags:<% @recipe.tags.each do |tag| %>
-    <li><%= tag.name %> | <a class='list-delete' href="/recipes/<%= @recipe.id %>/tags/<%= tag.id %>/delete">delete</a></li>
+    <li><a href="/recipes/<%= @recipe.id %>/tags/<%= tag.id %>/edit"><%= tag.name %></a> | <a class='list-delete' href="/recipes/<%= @recipe.id %>/tags/<%= tag.id %>/delete">delete</a></li>
   <% end %>
 </ul>
 
