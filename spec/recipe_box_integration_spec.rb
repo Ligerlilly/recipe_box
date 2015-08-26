@@ -24,4 +24,12 @@ describe 'recipe_box path', { type: :feature } do
     click_button 'Submit'
     expect(page).to have_content 'Corndog'
   end
+
+  it 'will remove a recipe' do
+    @recipe = Recipe.create({name: "Mojito", instructions: "muddle", ingredients: "mint, gin and sugar"})
+    visit '/recipes'
+    click_link "#{@recipe.name}"
+    click_button 'Delete'
+    expect(page).not_to have_content 'Mojito'
+  end
 end

@@ -1,5 +1,6 @@
-<form action="/recipes" method="post" id="recipeform">
+<form action="/recipes/<%= @recipe.id %>" method="post" id="recipeform">
   <div class='form-group'>
+    <input type="hidden" name="_method" value="patch">
     <label for="name">Enter your recipe name:</label>
     <input type="text" name="name" class='form-control' placeholder='Enter Recipe Name' required='true'>
     <label for="ingredients">Enter the ingredients:</label>

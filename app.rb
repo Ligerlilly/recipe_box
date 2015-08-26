@@ -32,5 +32,16 @@ end
 
 get '/recipes/:id/edit' do
   @recipe = Recipe.find(params['id'].to_i)
-	erb :recipe_form
+	erb :recipe_edit
+end
+
+delete '/recipes/:id' do
+	@recipe = Recipe.find(params['id'].to_i)
+	@recipe.destroy
+	redirect "/recipes"
+end
+
+patch '/recipes/:id' do
+	@recipe = Recipe.create({ name: params['name'], ingredients: params['ingredients'], instructions: params['instructions'] })
+	redirect "/recipes/#{@recipe.id}"
 end
