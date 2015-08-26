@@ -32,6 +32,16 @@ describe 'recipe_box path', { type: :feature } do
     click_button 'Delete'
     expect(page).not_to have_content 'Mojito'
   end
+
+  it 'will add a rating to a recipe' do
+    @recipe = Recipe.create({name: "Mojito", instructions: "muddle", ingredients: "mint, gin and sugar", rating: 0})
+    visit '/recipes'
+    click_link "#{@recipe.name}"
+    click_link 'edit'
+    select '5 stars', from: 'rating'
+    click_button 'Submit'
+    expect(page).to have_content '5 stars'
+  end
 end
 
 describe 'tag path', { type: :feature } do

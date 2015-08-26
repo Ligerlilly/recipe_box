@@ -1,0 +1,15 @@
+<form action="/recipes/<%= @recipe.id %>/ratings" method="post">
+  <div class="form-group">
+    <input type="hidden" name="_method" value="patch">
+    <input type="hidden" name="recipe_id" value="<%= @recipe.id %>">
+    <label for="rating">Enter Rating:</label>
+    <select name="rating">
+      <option value='5'>5 stars</option>
+      <option value='4'>4 stars</option>
+      <option value='3'>3 stars</option>
+      <option value='2'>2 stars</option>
+      <option value='1'>1 star</option>
+    </select>
+  </div>
+  <button type='submit'>Submit</button>
+</form>

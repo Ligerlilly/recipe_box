@@ -1,6 +1,9 @@
 
 <div>
-  <h2 class='left'><%= @recipe.name %></h2>
+  <h2 class='left'><%= @recipe.name %> </h2>
+  <% if @recipe.rating %>
+    <p>Rating: <%= @recipe.rating %> stars <a class='list-delete' href="/recipes/<%= @recipe.id %>/rating/edit">edit</a></p>
+  <% end %>
   <form class='right' action="/recipes/<%= @recipe.id %>" method="post">
     <div class="form-group">
       <input type="hidden" name="_method" value="delete">
@@ -14,10 +17,9 @@
     <li><a href="/recipes/<%= @recipe.id %>/tags/<%= tag.id %>/edit"><%= tag.name %></a> | <a class='list-delete' href="/recipes/<%= @recipe.id %>/tags/<%= tag.id %>/delete">delete</a></li>
   <% end %>
 </ul>
-
-</span>
-
-
+<% unless @recipe.rating %>
+  <a href="/recipes/<%= @recipe.id %>/rating/new">Add Rating</a><br>
+<% end %>
 <a href="/recipes/<%= @recipe.id %>/edit">Update Recipe</a><br>
 <a href="/recipes/<%= @recipe.id %>/tag/new">Add Tags</a>
 <p>

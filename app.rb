@@ -21,7 +21,8 @@ get '/recipes' do
 end
 
 post '/recipes' do
-	@recipe = Recipe.create({ name: params['name'], ingredients: params['ingredients'], instructions: params['instructions'] })
+	@recipe = Recipe.create({ name: params['name'], ingredients: params['ingredients'].downcase, instructions: params['instructions'], rating: 0 })
+
 	redirect "/recipes/#{@recipe.id}"
 end
 
@@ -76,4 +77,31 @@ patch '/recipes/:id/tags/:tag_id' do
 	@tag = Tag.find(params['tag_id'].to_i)
 	@tag.update({ name: params['tag_name'] })
 	redirect "/recipes/#{@recipe.id}"
+end
+
+get '/recipes/:id/rating/new' do
+	@recipe = Recipe.find(params['id'].to_i)
+	erb :rating_form
+end
+
+post '/recipes/:id/ratings' do
+	@recipe = Recipe.find(params['id'].to_i)
+	@recipe.update({ rating: params['rating']})
+	redirect "/recipes/#{@recipe.id}"
+end
+
+get '/recipes/:id/rating/edit' do
+	@recipe = Recipe.find(params['id'].to_i)
+	erb :rating_edit
+end
+
+patch '/recipes/:id/ratings' do
+	@recipe = Recipe.find(params['id'].to_i)
+	@recipe.update({ rating: params['rating']})
+	redirect "/recipes/#{@recipe.id}"
+end
+
+post '/search' do
+	@recipes = Recipe.find_by_sql(" SELECT * FROM recipes WHERE ingredients LIKE '%#{params['search']}%'")
+	erb :search_results
 end
