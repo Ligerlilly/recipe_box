@@ -1,0 +1,14 @@
+<form action="/recipes/<%= @recipe.id %>/tags" method="post">
+  <div class="form-group">
+    <input type="hidden" name="recipe_id" value="<%= @recipe.id %>">
+    <label for="tag_name">Enter tag:</label>
+    <select name="tag_name">
+      <option value='Cocktail'>Cocktail</option>
+      <option value='Mexican'>Mexican</option>
+      <option value='Italian'>Italian</option>
+      <option value='Indian'>Indian</option>
+      <option value='Middle Eastern'>Middle Eastern</option>
+    </select>
+  </div>
+  <button type='submit'>Submit</button>
+</form>

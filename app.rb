@@ -45,3 +45,22 @@ patch '/recipes/:id' do
 	@recipe = Recipe.create({ name: params['name'], ingredients: params['ingredients'], instructions: params['instructions'] })
 	redirect "/recipes/#{@recipe.id}"
 end
+
+get '/recipes/:id/tag/new' do
+	@recipe = Recipe.find(params['id'].to_i)
+	erb :tag_form
+end
+
+post '/recipes/:id/tags' do
+	@recipe = Recipe.find(params['id'].to_i)
+	@tag = Tag.create({ name: params['tag_name'] })
+	@recipe.tags.push(@tag)
+	redirect "/recipes/#{@recipe.id}"
+end
+
+get '/recipes/:id/tags/:tag_id/delete' do
+  @tag = Tag.find(params['tag_id'].to_i)
+	@recipe = Recipe.find(params['id'].to_i)
+	@tag.destroy
+	redirect "/recipes/#{@recipe.id}"
+end

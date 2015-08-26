@@ -1,12 +1,25 @@
-<h2><%= @recipe.name %></h2>
-<form class="" action="/recipes/<%= @recipe.id %>" method="post">
-  <div class="form-group">
-    <input type="hidden" name="_method" value="delete">
-  </div>
-  <button type='submit'>Delete</button>
-</form>
-<a href="/recipes/<%= @recipe.id %>/edit">Update Recipe</a>
 
+<div>
+  <h2 class='left'><%= @recipe.name %></h2>
+  <form class='right' action="/recipes/<%= @recipe.id %>" method="post">
+    <div class="form-group">
+      <input type="hidden" name="_method" value="delete">
+    </div>
+    <button type='submit'>Delete</button>
+  </form>
+</div>
+
+<ul class="list-inline">
+  Tags:<% @recipe.tags.each do |tag| %>
+    <li><%= tag.name %> | <a class='list-delete' href="/recipes/<%= @recipe.id %>/tags/<%= tag.id %>/delete">delete</a></li>
+  <% end %>
+</ul>
+
+</span>
+
+
+<a href="/recipes/<%= @recipe.id %>/edit">Update Recipe</a><br>
+<a href="/recipes/<%= @recipe.id %>/tag/new">Add Tags</a>
 <p>
   <%= @recipe.ingredients %>
 </p>

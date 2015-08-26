@@ -33,3 +33,26 @@ describe 'recipe_box path', { type: :feature } do
     expect(page).not_to have_content 'Mojito'
   end
 end
+
+describe 'tag path', { type: :feature } do
+  it 'can create a tag associated with a recipe' do
+    @recipe = Recipe.create({name: "Mojito", instructions: "muddle", ingredients: "mint, gin and sugar"})
+    visit '/recipes'
+    click_link "#{@recipe.name}"
+    click_link 'Add Tag'
+    select 'Cocktail', from: 'tag_name'
+    click_button 'Submit'
+    expect(page).to have_content 'Mojito'
+    expect(page).to have_content 'Cocktail'
+  end
+
+  it 'will remove a tag' do
+    @recipe = Recipe.create({name: "mojito", instructions: "muddle", ingredients: "mint, gin and sugar"})
+    @tag = Tag.create({name: "drink"})
+    @recipe.tags.push(@tag)
+    visit "/recipes/#{@recipe.id}"
+    expect(page).to have_content "drink"
+    click_link "delete"
+    expect(page).not_to have_content "drink"
+  end
+end
