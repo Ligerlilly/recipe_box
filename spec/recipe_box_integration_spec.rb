@@ -29,7 +29,7 @@ describe 'recipe_box path', { type: :feature } do
     @recipe = Recipe.create({name: "Mojito", instructions: "muddle", ingredients: "mint, gin and sugar"})
     visit '/recipes'
     click_link "#{@recipe.name}"
-    click_button 'Delete'
+    click_link 'delete'
     expect(page).not_to have_content 'Mojito'
   end
 
@@ -62,7 +62,7 @@ describe 'tag path', { type: :feature } do
     @recipe.tags.push(@tag)
     visit "/recipes/#{@recipe.id}"
     expect(page).to have_content "drink"
-    click_link "delete"
+    click_link "Delete Tags"
     expect(page).not_to have_content "drink"
   end
 

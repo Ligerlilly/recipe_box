@@ -5,7 +5,6 @@ require 'sinatra/reloader'
 require 'pry'
 require './lib/tag'
 require './lib/recipe'
-require 'sinatra/partial'
 # require 'sinatra/activerecord'
 # require("bundler/setup")
 # Bundler.require(:default)
@@ -104,4 +103,10 @@ end
 post '/search' do
 	@recipes = Recipe.find_by_sql(" SELECT * FROM recipes WHERE ingredients LIKE '%#{params['search']}%'")
 	erb :search_results
+end
+
+get '/recipes/:id/delete' do
+  @recipe = Recipe.find(params['id'].to_i)
+	@recipe.destroy
+	redirect '/recipes'
 end
