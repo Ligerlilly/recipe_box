@@ -27,6 +27,7 @@ end
 
 get '/recipes/:id' do
 	@recipe = Recipe.find(params['id'].to_i)
+	@ingredients = @recipe.ingredients.split(' ')
 	erb(:recipe)
 end
 

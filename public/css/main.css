@@ -1,5 +1,7 @@
 .jumbotron {
   text-align: center;
+  background-color: white;
+  margin-bottom: 6em;
 }
 .list {
   margin-bottom: 5em;
@@ -13,4 +15,31 @@
 }
 
 .right {
+}
+
+
+
+@media (min-width: 768px ) {
+  .center {
+    width: 175px;
+    margin: 0 auto;
+
+  }
+
+  h1  {
+    transform: translateX(-20px);
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .jumbotron h1 {
+    font-size: 70px;
+    transform: translateX(-15px);
+  }
+  .center {
+    width: 250px;
+    margin: 0 auto;
+  }
 }

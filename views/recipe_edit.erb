@@ -1,3 +1,5 @@
+<br>
+<br>
 <form action="/recipes/<%= @recipe.id %>" method="post" id="recipeform">
   <div class='form-group'>
     <input type="hidden" name="_method" value="patch">
@@ -8,7 +10,7 @@
     <label for="instructions">Enter the instructions:</label>
     <textarea class='form-control' name="instructions" form="recipeform" placeholder='Enter instructions' required='true'></textarea>
   </div>
-  <button type='submit'>Submit</button>
+  <button class="btn btn-success" type='submit'>Submit</button>
 </form>
 
-<a href="/">Home</a>
+<a href="/recipes/<%= @recipe.id %>">Back</a>

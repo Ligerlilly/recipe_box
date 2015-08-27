@@ -1,6 +1,6 @@
 
 
-  <h2 class='left'><%= @recipe.name %> <a class='list-delete' href="/recipes/<%= @recipe.id %>/delete">delete</a> </h2>
+  <h1 class='left'><%= @recipe.name %> <a class='list-delete' href="/recipes/<%= @recipe.id %>/edit">Update Recipe</a> <a class='list-delete' href="/recipes/<%= @recipe.id %>/delete">delete</a> </h1>
 
   <!-- <form class='right' action="/recipes/<%= @recipe.id %>" method="post">
     <div class="form-group">
@@ -14,7 +14,7 @@
   <% end %></li>
   <li><ul class="list-inline">
     Tags:<% @recipe.tags.each do |tag| %>
-      <li><a href="/recipes/<%= @recipe.id %>/tags/<%= tag.id %>/edit"><%= tag.name %></a> | <a class='list-delete' href="/recipes/<%= @recipe.id %>/tags/<%= tag.id %>/delete"> Delete Tags</a></li>
+      <li><a href="/recipes/<%= @recipe.id %>/tags/<%= tag.id %>/edit"><%= tag.name %></a> | <a class='list-delete' href="/recipes/<%= @recipe.id %>/tags/<%= tag.id %>/delete"> Delete Tag</a></li>
     <% end %>
   |</ul></li>
   <li><a class='list-delete'href="/recipes/<%= @recipe.id %>/tag/new"> Add Tags</a></li>
@@ -30,7 +30,13 @@
   <tbody>
   <tr>
     <td>
-      <%= @recipe.ingredients %>
+      <ol>
+        <% @ingredients.each do |i| %>
+          <li><%= i.gsub(',', '' ).capitalize %></li>
+        <% end %>
+      </ol>
+
+
     </td>
     <td>
       <%= @recipe.instructions %>
@@ -41,7 +47,7 @@
 <% unless @recipe.rating %>
   <a href="/recipes/<%= @recipe.id %>/rating/new">Add Rating</a><br>
 <% end %>
-<a href="/recipes/<%= @recipe.id %>/edit">Update Recipe</a><br>
+<br><br>
 
 
 <a href="/recipes">Back</a>

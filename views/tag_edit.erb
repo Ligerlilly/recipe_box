@@ -1,7 +1,8 @@
+<br>
 <form action="/recipes/<%= @recipe.id %>/tags/<%= @tag.id %>" method="post">
   <div class="form-group">
     <input type="hidden" name="_method" value="patch">
-    
+
     <label for="tag_name">Enter tag:</label>
     <select name="tag_name">
       <option value='Cocktail'>Cocktail</option>
@@ -11,5 +12,5 @@
       <option value='Middle Eastern'>Middle Eastern</option>
     </select>
   </div>
-  <button type='submit'>Submit</button>
+  <button class="btn btn-success" type='submit'>Submit</button>
 </form>

@@ -62,7 +62,7 @@ describe 'tag path', { type: :feature } do
     @recipe.tags.push(@tag)
     visit "/recipes/#{@recipe.id}"
     expect(page).to have_content "drink"
-    click_link "Delete Tags"
+    click_link "Delete Tag"
     expect(page).not_to have_content "drink"
   end
 
