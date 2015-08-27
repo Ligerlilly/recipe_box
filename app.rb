@@ -20,8 +20,7 @@ get '/recipes' do
 end
 
 post '/recipes' do
-	@recipe = Recipe.create({ name: params['name'], ingredients: params['ingredients'].downcase, instructions: params['instructions'], rating: 0 })
-
+	@recipe = Recipe.create({ name: params['name'], ingredients: params['ingredients'].downcase, instructions: params['instructions'].gsub(/\n/, '<br>'), rating: 0 })
 	redirect "/recipes/#{@recipe.id}"
 end
 
@@ -102,7 +101,7 @@ patch '/recipes/:id/ratings' do
 end
 
 post '/search' do
-	@recipes = Recipe.find_by_sql(" SELECT * FROM recipes WHERE ingredients LIKE '%#{params['search']}%'")
+	@recipes = Recipe.find_by_sql(" SELECT * FROM recipes WHERE ingredients LIKE '%#{params['search'].downcase}%'")
 	erb :search_results
 end
 

@@ -1,6 +1,6 @@
 
 
-  <h1 class='left'><%= @recipe.name %> <a class='list-delete' href="/recipes/<%= @recipe.id %>/edit">Update Recipe</a> <a class='list-delete' href="/recipes/<%= @recipe.id %>/delete">delete</a> </h1>
+<h1 class='left'><%= @recipe.name %> <a class='list-delete' href="/recipes/<%= @recipe.id %>/edit">Update Recipe</a> <a class='list-delete' href="/recipes/<%= @recipe.id %>/delete">delete</a> </h1>
 
   <!-- <form class='right' action="/recipes/<%= @recipe.id %>" method="post">
     <div class="form-group">
@@ -10,7 +10,7 @@
   </form> -->
 <ul class="list-inline">
   <li><% if @recipe.rating %>
-    <p>Rating: <%= @recipe.rating %> stars <a class='list-delete' href="/recipes/<%= @recipe.id %>/rating/edit">edit</a></p>
+    <p>Rating: <% @recipe.rating.times do %> <span class="glyphicon glyphicon-star-empty"></span> <% end %> <a class='list-delete' href="/recipes/<%= @recipe.id %>/rating/edit">edit</a></p>
   <% end %></li>
   <li><ul class="list-inline">
     Tags:<% @recipe.tags.each do |tag| %>
@@ -39,7 +39,8 @@
 
     </td>
     <td>
-      <%= @recipe.instructions %>
+
+      <%= @recipe.instructions.capitalize %>
     </td>
   </tr>
   </tbody>

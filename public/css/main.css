@@ -1,8 +1,10 @@
 .jumbotron {
   text-align: center;
   background-color: white;
-  margin-bottom: 6em;
+  height: 150px
+
 }
+
 .list {
   margin-bottom: 5em;
 }
@@ -10,14 +12,18 @@
 .list-delete {
   font-size: 10px;
 }
-.left {
 
+body  {
+  font-family: 'Josefin Slab', serif;
 }
 
-.right {
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: 'Josefin Slab', serif;
 }
 
-
+table a:not(.btn), .table a:not(.btn) {
+  text-decoration: none;
+}
 
 @media (min-width: 768px ) {
   .center {
@@ -42,4 +48,10 @@
     width: 250px;
     margin: 0 auto;
   }
+}
+.pic {
+  width: 300px;
+  margin: 0 auto;
+  transform: translateX(-20px);
+  margin-bottom: 3em;
 }

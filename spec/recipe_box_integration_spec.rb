@@ -5,7 +5,7 @@ set(:show_exceptions, false)
 describe 'recipe_box path', { type: :feature } do
   it 'can create a new recipe' do
     visit '/'
-    click_link 'See amazing recipes now!'
+    click_link "Let's Cook!"
     fill_in 'name', with: 'Mojito'
     fill_in 'ingredients', with: 'Gin, mint, sugar'
     fill_in 'instructions', with: 'Muddle'
@@ -14,7 +14,7 @@ describe 'recipe_box path', { type: :feature } do
   end
 
   it 'can update the recipe' do
-    @recipe = Recipe.create({name: "mojito", instructions: "muddle", ingredients: "mint, gin and sugar"})
+    @recipe = Recipe.create({name: "mojito", instructions: "muddle", ingredients: "mint, gin and sugar", rating: 0 })
     visit '/recipes'
     click_link "#{@recipe.name}"
     click_link 'Update Recipe'
@@ -26,7 +26,7 @@ describe 'recipe_box path', { type: :feature } do
   end
 
   it 'will remove a recipe' do
-    @recipe = Recipe.create({name: "Mojito", instructions: "muddle", ingredients: "mint, gin and sugar"})
+    @recipe = Recipe.create({name: "Mojito", instructions: "muddle", ingredients: "mint, gin and sugar", rating: 0 })
     visit '/recipes'
     click_link "#{@recipe.name}"
     click_link 'delete'
@@ -34,19 +34,19 @@ describe 'recipe_box path', { type: :feature } do
   end
 
   it 'will add a rating to a recipe' do
-    @recipe = Recipe.create({name: "Mojito", instructions: "muddle", ingredients: "mint, gin and sugar", rating: 0})
+    @recipe = Recipe.create({name: "Mojito", instructions: "muddle", ingredients: "mint, gin and sugar", rating: 0 })
     visit '/recipes'
     click_link "#{@recipe.name}"
     click_link 'edit'
     select '5 stars', from: 'rating'
     click_button 'Submit'
-    expect(page).to have_content '5 stars'
+    expect(page).to have_css "span.glyphicon-star-empty"
   end
 end
 
 describe 'tag path', { type: :feature } do
   it 'can create a tag associated with a recipe' do
-    @recipe = Recipe.create({name: "Mojito", instructions: "muddle", ingredients: "mint, gin and sugar"})
+    @recipe = Recipe.create({name: "Mojito", instructions: "muddle", ingredients: "mint, gin and sugar", rating: 0 })
     visit '/recipes'
     click_link "#{@recipe.name}"
     click_link 'Add Tag'
@@ -57,7 +57,7 @@ describe 'tag path', { type: :feature } do
   end
 
   it 'will remove a tag' do
-    @recipe = Recipe.create({name: "mojito", instructions: "muddle", ingredients: "mint, gin and sugar"})
+    @recipe = Recipe.create({name: "mojito", instructions: "muddle", ingredients: "mint, gin and sugar", rating: 0 })
     @tag = Tag.create({name: "drink"})
     @recipe.tags.push(@tag)
     visit "/recipes/#{@recipe.id}"
@@ -67,7 +67,7 @@ describe 'tag path', { type: :feature } do
   end
 
   it 'will update a tag' do
-    @recipe = Recipe.create({name: "mojito", instructions: "muddle", ingredients: "mint, gin and sugar"})
+    @recipe = Recipe.create({name: "mojito", instructions: "muddle", ingredients: "mint, gin and sugar", rating: 0 })
     @tag = Tag.create({name: "drink"})
     @recipe.tags.push(@tag)
     visit "/recipes/#{@recipe.id}"

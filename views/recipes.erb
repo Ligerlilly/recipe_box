@@ -20,10 +20,12 @@
   <% Recipe.order(rating: :desc).all.each do |recipe| %>
   <tr>
     <td>
-    <a href="/recipes/<%= recipe.id %>"><%= recipe.name %></a>
-  </td>
+      <a href="/recipes/<%= recipe.id %>"><%= recipe.name %></a>
+    </td>
     <td>
-      <%= recipe.rating %> stars
+      <% recipe.rating.times do  %>
+        <span class="glyphicon glyphicon-star-empty"></span>
+      <% end %>
     </td>
   <% end %>
 </tr>

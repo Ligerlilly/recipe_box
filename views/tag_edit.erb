@@ -3,7 +3,7 @@
   <div class="form-group">
     <input type="hidden" name="_method" value="patch">
 
-    <label for="tag_name">Enter tag:</label>
+    <label for="tag_name">Update tag:</label>
     <select name="tag_name">
       <option value='Cocktail'>Cocktail</option>
       <option value='Mexican'>Mexican</option>
@@ -14,3 +14,10 @@
   </div>
   <button class="btn btn-success" type='submit'>Submit</button>
 </form>
+<br>
+<h4> Recipes associated with this tag </h4>
+<ul>
+  <% @tag.recipes.each do |recipe| %>
+  <li> <a href="/recipes/<%= recipe.id %>"><%= recipe.name %></a> </li>
+  <% end %>
+</ul>

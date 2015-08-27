@@ -6,9 +6,19 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 		<script src='/js/main.js'></script>
-
+		<!-- <link href='https://fonts.googleapis.com/css?family=Josefin+Slab' rel='stylesheet' type='text/css'> -->
+		<link href='https://fonts.googleapis.com/css?family=Josefin+Slab:700' rel='stylesheet' type='text/css'>
 	</head>
 	<body>
+		<div id="fb-root"></div>
+
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4&appId=476933069134274";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 		<nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -29,7 +39,8 @@
           <ul class="nav navbar-nav navbar-right">
             <!-- <li><a href="../navbar/">Default</a></li>
             <li><a href="../navbar-static-top/">Static top</a></li> -->
-            <li><a href="./">Sign In <span class="sr-only">(current)</span></a></li>
+            <!-- <li><a href="./">Sign In <span class="sr-only">(current)</span></a></li> -->
+						<li><div class="fb-login-button navbar-brand" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
